@@ -1,0 +1,40 @@
+#!/bin/bash
+
+BASE="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/rel-1.0.0"
+
+function extract {
+    RID=$1
+    EXT=$2
+    URL="$BASE/dotnet-dev-$RID.latest.tar.gz"
+    SRC="shared/Microsoft.NETCore.App/1.1.0/System.Native.$EXT"
+    TGT_DIR="runtimes/$RID/native"
+    TGT="$TGT_DIR/libSystem.Native.$EXT"
+
+    echo "$URL -> $TGT"
+    mkdir -p $TGT_DIR
+    curl -# $URL | tar x -O $SRC > $TGT
+}
+
+RIDS=(
+    centos-x64
+    debian-x64
+    fedora.23-x64
+    opensuse.13.2-x64
+    rhel-x64
+    ubuntu-x64
+    ubuntu.16.04-x64
+)
+
+for RID in ${RIDS[@]}
+do
+    extract $RID so
+done
+
+RIDS=(
+    osx-x64
+)
+
+for RID in ${RIDS[@]}
+do
+    extract $RID dylib
+done

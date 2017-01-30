@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>System.Native</id>
+        <version>1.0.0-rc4-004707</version>
+        <title>System.Native</title>
+        <authors>flaub</authors>
+        <owners>Microsoft</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>System.Native</description>
+        <dependencies>
+            <group targetFramework="net462">
+                <dependency id="Microsoft.NETCore.Platforms" version="1.0.0" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="runtimes\**" target="runtimes" />
+    </files>
+</package>
